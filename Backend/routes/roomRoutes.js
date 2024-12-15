@@ -3,7 +3,7 @@ const { createRoom, getRooms, updateRoom, deleteRoom } = require('../controllers
 const router = express.Router();
 
 router.post('/createRoom', createRoom);
-router.get('/getRoom', getRooms);
+router.get('/getRooms', getRooms);
 router.put('/updateRoom/:id', updateRoom);
 router.delete('/deleteRoom/:id', deleteRoom);
 

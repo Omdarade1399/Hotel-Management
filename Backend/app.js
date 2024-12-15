@@ -10,7 +10,7 @@ const app = express();
 connectDB();
 
 const corsOptions = {
-    origin: 'http://localhost:4200', // Angular frontend URL
+    origin: 'http://localhost:4200',
     allowedHeaders: ['Content-Type', 'Authorization'],
   };
 app.use(cors(corsOptions));

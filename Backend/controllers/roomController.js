@@ -1,9 +1,13 @@
 const Room = require('../models/roomModel');
 
 exports.createRoom = async (req, res) => {
-  const {room_type, room_number, availability, description, price, max_occupancy, created_at, updated_at} = req.body;
+  const { room_type, room_number, availability, price, max_occupancy } = req.body;
   try {
-    const room = new Room({room_type, room_number, availability, description, price, max_occupancy, created_at, updated_at});
+    const roomExists = await Room.findOne({ room_number });
+    if (roomExists) {
+      return res.status(400).json({ message: 'Room number already exists' });
+    }
+    const room = new Room({ room_type, room_number, availability, price, max_occupancy });
     await room.save();
     res.status(201).json({ message: 'Room created successfully', room });
   } catch (error) {
